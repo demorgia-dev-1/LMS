@@ -6,7 +6,7 @@ import axios from 'axios';
 
 export const AuthContext = createContext();
 
-export const AuthProvider = ({ children }) => {
+export function AuthProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [userRole, setUserRole] = useState(null);
@@ -68,7 +68,9 @@ export const AuthProvider = ({ children }) => {
   const register = async (userData) => {
     try {
       console.log("userdats:",userData)
-      const response = await axios.post(import.meta.env.VITE_API_URL+import.meta.env.VITE_REGISTER_ENDPOINT, userData);
+       const url = import.meta.env.VITE_API_URL + import.meta.env.VITE_REGISTER_ENDPOINT;
+    console.log("Registering at:", url); // Log the full URL
+      const response = await axios.post(url, userData);
       console.log("response:",response)
       return { success: true, data: response.data };
     } catch (error) {

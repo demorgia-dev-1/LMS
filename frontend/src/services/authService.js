@@ -1,4 +1,5 @@
 import api from './api';
+import axios from 'axios';
 
 const authService = {
   /**
@@ -7,12 +8,19 @@ const authService = {
    * @param {string} password - User password
    * @returns {Promise} - Response with token and user data
    */
-  login: async (email, password) => {
-    console.log("fvjnrfkj")
-    const response = await api.post('/auth/login', { email, password });
-    return response.data;
-  },
+  // login: async (email, password) => {
+  //   console.log("fvjnrfkj")
+  //   const response = await api.post('/auth/login', { email, password });
+  //   return response.data;
+  // },
 
+  // in authService.login
+login: async (email, password) => {
+  console.log('Calling login API with', email);
+  const response = await axios.post('/api/auth/login', { email, password });
+  console.log('Login API response:', response.data);
+  return response.data;
+},
   /**
    * Register a new user
    * @param {Object} userData - User registration data

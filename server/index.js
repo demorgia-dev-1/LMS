@@ -40,6 +40,7 @@ process.on('SIGINT', () => {
 });
 app.use((req,res,next)=>{
   console.log("fcfvv")
+  next(); // 🔥 This is mandatory!
 })
 
 // Middleware
